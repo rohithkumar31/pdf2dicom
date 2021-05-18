@@ -11,7 +11,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     input_pdf = args.input_pdf
     e_pdf_ds = generate_dicom_from_pdf(input_pdf)
-    e_pdf_ds.Modality = 'CR'
 
     e_pdf_ds.PatientName = 'John Doe'
     e_pdf_ds.PatientID = '12345'
