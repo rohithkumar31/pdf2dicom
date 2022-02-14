@@ -29,6 +29,7 @@ def generate_dicom_from_pdf(pdf_file):
     with open(pdf_file, 'rb') as f:
         f_read = f.read()
         ValueLength = len(f_read)
+        ## All Dicom Element must have an even ValueLength
         if ValueLength % 2 != 0:
             f_read += b'\0'
         ds.EncapsulatedDocument = f_read
