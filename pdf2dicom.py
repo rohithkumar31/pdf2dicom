@@ -27,7 +27,12 @@ def generate_dicom_from_pdf(pdf_file):
     ds.SOPClassUID = '1.2.840.10008.5.1.4.1.1.104.1'
 
     with open(pdf_file, 'rb') as f:
-        ds.EncapsulatedDocument = f.read()
+        f_read = f.read()
+        ValueLength = len(f_read)
+        ## All Dicom Element must have an even ValueLength
+        if ValueLength % 2 != 0:
+            f_read += b'\0'
+        ds.EncapsulatedDocument = f_read
 
     ds.MIMETypeOfEncapsulatedDocument = 'application/pdf'
 
